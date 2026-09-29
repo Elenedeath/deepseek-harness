@@ -9,7 +9,8 @@ import type {
   SaveImageAttachment,
   StoredImageAttachment,
 } from '@deepseek-ai/dsh-attachment'
-import LlmRuntime, { createToolResultMessage, createUserMessage, CONTEXT_WINDOW_EXCEEDED_CODE, LlmError, ReasoningEffortId, userAgent } from '@deepseek-ai/dsh-llm'
+import { brandString } from '@deepseek-ai/dsh-brand'
+import LlmRuntime, { createToolResultMessage, createUserMessage, CONTEXT_WINDOW_EXCEEDED_CODE, LlmError, ReasoningEffortId, userAgent, type GenerateOptions } from '@deepseek-ai/dsh-llm'
 import * as LlmPiAi from '@deepseek-ai/dsh-llm-pi-ai'
 import { PiAiAdapter } from '@deepseek-ai/dsh-llm-pi-ai'
 import { MAX_TIMER_DELAY_MS } from '@deepseek-ai/dsh-timeout'
@@ -33,6 +34,7 @@ const IMAGE_REF: ImageAttachmentRef = {
 }
 const HOST_IMAGE_PATH = '/host/.dsh/attachments/objects/aa/object'
 const MODEL_IMAGE_PATH = '/model/.dsh/attachments/objects/aa/object'
+const SESSION_ID = brandString<NonNullable<GenerateOptions['sessionId']>>('sess-opencode-go')
 
 class MappedFileSystem extends Service {
   constructor(ctx: Context) {
@@ -121,6 +123,55 @@ describe('PiAiAdapter provider routing', () => {
     await assemble(ctx, { model: 'deepseek-flash', messages: [] })
     expect(server.headers[0]?.['x-company']).toBe('private')
     expect(server.headers[0]?.['user-agent']).toBe(userAgent())
+  })
+
+  it('stamps the OpenCode Go session header from the seam session id', async () => {
+    const server = await mockServer([{ events: textEvents }])
+    const adapter = adapterOf({ 'opencode-go': { baseURL: server.url } })
+    for await (const _ of adapter.stream({
+      provider: 'opencode-go',
+      model: 'deepseek-v4.1-flash',
+      messages: [],
+      sessionId: SESSION_ID,
+    })) {}
+    expect(server.headers[0]?.['x-opencode-session']).toBe('sess-opencode-go')
+  })
+
+  it('sends no OpenCode Go session header for other providers', async () => {
+    const server = await mockServer([{ events: textEvents }])
+    const adapter = adapterOf({ deepseek: { baseURL: server.url } })
+    for await (const _ of adapter.stream({
+      provider: 'deepseek',
+      model: 'deepseek-flash',
+      messages: [],
+      sessionId: SESSION_ID,
+    })) {}
+    expect(server.headers[0]?.['x-opencode-session']).toBeUndefined()
+  })
+
+  it('lets a deployment-configured OpenCode Go session header win', async () => {
+    const server = await mockServer([{ events: textEvents }])
+    const adapter = adapterOf({
+      'opencode-go': { baseURL: server.url, headers: { 'X-Opencode-Session': 'static' } },
+    })
+    for await (const _ of adapter.stream({
+      provider: 'opencode-go',
+      model: 'deepseek-v4.1-flash',
+      messages: [],
+      sessionId: SESSION_ID,
+    })) {}
+    expect(server.headers[0]?.['x-opencode-session']).toBe('static')
+  })
+
+  it('sends no OpenCode Go session header without a session id', async () => {
+    const server = await mockServer([{ events: textEvents }])
+    const adapter = adapterOf({ 'opencode-go': { baseURL: server.url } })
+    for await (const _ of adapter.stream({
+      provider: 'opencode-go',
+      model: 'deepseek-v4.1-flash',
+      messages: [],
+    })) {}
+    expect(server.headers[0]?.['x-opencode-session']).toBeUndefined()
   })
 
   it('forwards common stream options and profile reasoning', async () => {

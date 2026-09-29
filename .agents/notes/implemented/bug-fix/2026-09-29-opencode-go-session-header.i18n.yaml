@@ -1,0 +1,22 @@
+# Bilingual-pair consistency record for 2026-09-29-opencode-go-session-header.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write .agents/notes/implemented/bug-fix/2026-09-29-opencode-go-session-header.md
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header:
+  en: 3959edd4048fb111
+  zh: c2c75f6ca856a869
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header/problem:
+  en: a23c6d6b7563fe1a
+  zh: f89439aab285aafb
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header/decision:
+  en: 3a79398a24f38cc2
+  zh: 68997cb285ee9fc3
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header/alternatives-considered:
+  en: 336ef9beef5e97f1
+  zh: 9eb6fd407136ec1f
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header/consequences:
+  en: 2f765cfb0840743e
+  zh: b9b2a42ff2b274ab
+/agent-note-opencode-go-requests-carry-the-seam-session-id-as-their-routing-header/testing:
+  en: bc245e7fff186cf8
+  zh: 31efd49e586199ca

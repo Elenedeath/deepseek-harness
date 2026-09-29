@@ -1,0 +1,61 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write packages/host/harness-supervisor-mcp/README.md
+/:
+  en: e27d3bfcefed5f44
+  zh: f20e4f8b441c3a92
+/deepseek-ai-dsh-host-harness-supervisor-mcp:
+  en: 05c207c2b5ae64c3
+  zh: 6126528f92b4eb38
+/deepseek-ai-dsh-host-harness-supervisor-mcp/summary:
+  en: d44006d3c634b278
+  zh: 75355886aa2f441d
+/deepseek-ai-dsh-host-harness-supervisor-mcp/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: 09388d293f9be9cb
+/deepseek-ai-dsh-host-harness-supervisor-mcp/use-this-package:
+  en: c5b56598509c207a
+  zh: 40b371b2307978d1
+/deepseek-ai-dsh-host-harness-supervisor-mcp/use-this-package/tool-surface:
+  en: eea59bc332a1bdb4
+  zh: 5dff71d050d30185
+/deepseek-ai-dsh-host-harness-supervisor-mcp/use-this-package/result-and-transport-bounds:
+  en: b8944df33bc3d4a7
+  zh: 2fbe6d9ebf280cea
+/deepseek-ai-dsh-host-harness-supervisor-mcp/understand-the-implementation:
+  en: 42b15ac6321706aa
+  zh: 7ae097f3abcc5d9c
+/deepseek-ai-dsh-host-harness-supervisor-mcp/understand-the-implementation/design-concept:
+  en: e36a122ebf1c860a
+  zh: 3637772cc6a7da9c
+/deepseek-ai-dsh-host-harness-supervisor-mcp/understand-the-implementation/lifecycle-and-security-boundary:
+  en: 6980a87c081cc2a0
+  zh: 2184248c85c68731
+/deepseek-ai-dsh-host-harness-supervisor-mcp/understand-the-implementation/source-map:
+  en: 9534999be9243ffe
+  zh: 9af89c275dd420de
+/deepseek-ai-dsh-host-harness-supervisor-mcp/further-exploration:
+  en: 56823cb4e1eb7c18
+  zh: b56c0c5ae74bfdea
+/deepseek-ai-dsh-host-harness-supervisor-mcp/model-experience:
+  en: 215e7ba838619b7b
+  zh: a311da3843709f90
+/deepseek-ai-dsh-host-harness-supervisor-mcp/model-experience/mcp-supervision-tools:
+  en: 3e91065711e49368
+  zh: 35f15cbb42edc6fd
+/deepseek-ai-dsh-host-harness-supervisor-mcp/model-experience/mcp-supervision-tools/what-the-model-sees:
+  en: 26647a3126476561
+  zh: 5d22b00b0728d632
+/deepseek-ai-dsh-host-harness-supervisor-mcp/model-experience/mcp-supervision-tools/token-effect:
+  en: 997e4c571f746d68
+  zh: 18b412357f117aaf
+/deepseek-ai-dsh-host-harness-supervisor-mcp/model-experience/mcp-supervision-tools/kv-cache-effect:
+  en: c2da3a7b6e1d0564
+  zh: dc86acbd071bdf07
+/deepseek-ai-dsh-host-harness-supervisor-mcp/known-limitations-and-deferred-work:
+  en: b38dd1c47e7ebc92
+  zh: 240d801e2babc945
+/deepseek-ai-dsh-host-harness-supervisor-mcp/known-limitations-and-deferred-work/dev-note:
+  en: 83f4af4e5eed1d81
+  zh: 6339415da014a47e
